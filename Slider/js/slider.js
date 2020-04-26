@@ -32,10 +32,12 @@ let sliderContainer = document.querySelector('.slider-container'),
         
             widthx = window.innerWidth;
             sliderContainer.style.width = widthx+'px';
+            sliderContent.style.width = (slidesNumber * widthx)+'px';
             
         }else{
 
             sliderContainer.style.width = widthx+'px';
+            sliderContent.style.width = (slidesNumber * widthx)+'px';
         }
         
         
@@ -54,10 +56,14 @@ let sliderContainer = document.querySelector('.slider-container'),
         document.querySelector('.pagger').style.top = (heightx - (heightx/10))+'px'
         document.querySelector('.pagger').style.left = ((widthx/2) - (document.querySelector('.pagger').clientWidth/2))+'px'
 
-        slideSize = sliderContent.clientWidth;
+        slideSize = sliderContainer.clientWidth;
         slideTranslate = slideSize;
 
-        
+    
+        Array.from(sliderContent.children).forEach((item)=>{
+
+            item.style.width = sliderContainer.clientWidth+'px';
+        });
 
     };
 
@@ -74,6 +80,7 @@ let sliderContainer = document.querySelector('.slider-container'),
 
     nextBtn.onclick = function () {
 
+  
         currentSlide++;
 
         slideTranslate += slideSize;
